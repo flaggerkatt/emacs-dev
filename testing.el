@@ -19,7 +19,8 @@
 ;;
 ;;; Code:
 
-
+;; Bla bla bla
+;;
 
 (provide 'testing)
 ;;; testing.el ends here
