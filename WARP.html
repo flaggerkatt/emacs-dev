@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>WARP.html</title>
+<meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8"/>
+<link rel="stylesheet" type="text/css" media="all" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css"  />
+<link rel="stylesheet" type="text/css" media="all" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/github.min.css"  /><meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'><style> body { box-sizing: border-box; max-width: 740px; width: 100%; margin: 40px auto; padding: 0 10px; } </style><script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script><script src='https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js'></script><script>document.addEventListener('DOMContentLoaded', () => { document.body.classList.add('markdown-body'); document.querySelectorAll('pre[lang] > code').forEach((code) => { code.classList.add(code.parentElement.lang); }); document.querySelectorAll('pre > code').forEach((code) => { hljs.highlightBlock(code); }); });</script>
+</head>
+
+<body>
+
+<h1>WARP.md</h1>
+
+<p>This file provides guidance to WARP (warp.dev) when working with code in this repository.</p>
+
+<h2>Project Overview</h2>
+
+<p>This is an Emacs development repository. This repository is currently empty and ready for Emacs Lisp development.</p>
+
+<h2>Common Commands</h2>
+
+<h3>Emacs Lisp Development</h3>
+
+<ul>
+<li><strong>Load an Elisp file</strong>: <code>emacs -Q -l &lt;file.el&gt;</code> (starts Emacs without config)</li>
+<li><strong>Byte-compile</strong>: <code>emacs -batch -f batch-byte-compile &lt;file.el&gt;</code></li>
+<li><strong>Run Elisp in batch mode</strong>: <code>emacs -batch -l &lt;file.el&gt; --eval "&lt;expression&gt;"</code></li>
+<li><strong>Check syntax</strong>: <code>emacs --batch --eval "(check-parens)" &lt;file.el&gt;</code></li>
+</ul>
+
+<h3>Testing</h3>
+
+<ul>
+<li><strong>ERT (Emacs Lisp Regression Testing)</strong>: <code>emacs -batch -l &lt;file.el&gt; -l &lt;test-file.el&gt; -f ert-run-tests-batch-and-exit</code></li>
+<li><strong>Run specific test</strong>: <code>emacs -batch -l &lt;file.el&gt; -l &lt;test-file.el&gt; --eval "(ert-run-tests-batch-and-exit 'test-name)"</code></li>
+</ul>
+
+<h3>Package Development</h3>
+
+<ul>
+<li><strong>Create package archive</strong>: <code>emacs -batch -l package-build.el -f package-build-archive &lt;package-name&gt;</code></li>
+<li><strong>Install package locally</strong>: <code>emacs -batch --eval "(package-install-file \"&lt;package-file.el&gt;\")"</code></li>
+</ul>
+
+<h2>Architecture Guidelines</h2>
+
+<h3>Emacs Lisp Conventions</h3>
+
+<ul>
+<li>Use <code>;;;</code> for file-level comments, <code>;;</code> for code-level comments, and <code>;</code> for inline comments</li>
+<li>Follow naming conventions: <code>package-name-function-name</code> for public functions, <code>package-name--function-name</code> for private functions</li>
+<li>Include proper docstrings for all interactive functions and user-facing variables</li>
+<li>Use <code>defcustom</code> for user-configurable variables, not <code>defvar</code></li>
+<li>Mark interactive functions with <code>(interactive)</code> form</li>
+</ul>
+
+<h3>File Organization</h3>
+
+<ul>
+<li>Main package file should have <code>provide</code> statement at the end: <code>(provide 'package-name)</code></li>
+<li>Test files typically end in <code>-test.el</code> or <code>-tests.el</code></li>
+<li>Use <code>require</code> or <code>autoload</code> for dependencies</li>
+</ul>
+
+<h3>Common Patterns</h3>
+
+<ul>
+<li>Use <code>with-current-buffer</code> for buffer-local operations</li>
+<li>Prefer <code>save-excursion</code> and <code>save-restriction</code> to preserve buffer state</li>
+<li>Use <code>condition-case</code> or <code>ignore-errors</code> for error handling</li>
+<li>For hooks, use <code>add-hook</code> and <code>remove-hook</code></li>
+</ul>
+
+<h2>Development Notes</h2>
+
+<p>This repository structure follows standard Emacs package development practices. As the codebase grows, this file should be updated with specific build commands, testing procedures, and architectural decisions relevant to the actual code being developed.</p>
+
+</body>
+</html>
